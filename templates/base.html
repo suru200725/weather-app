@@ -1,13 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <title>Weather App</title>
-
-<form method="POST">
-    <input type="text" name="city" placeholder="Enter city">
-    <button type="submit">Search</button>
-</form>
 
 <link rel="stylesheet" 
 href="{{ url_for('static', filename='style.css') }}">
@@ -15,11 +9,13 @@ href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
-    
-    <div class="container">
-        {% block content %}
-        {% endblock %}
-    </div>
+
+<div class="container">
+
+{% block content %}
+{% endblock %}
+
+</div>
 
 </body>
 </html>

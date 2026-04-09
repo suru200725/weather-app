@@ -2,20 +2,46 @@
 
 {% block content %}
 
+<form method="POST">
+    <input type="text" name="city" placeholder="Enter city"
+           value="{{ weather.city if weather else '' }}">
+    <button type="submit">Search</button>
+</form>
+
 {% if weather %}
 
 <div class="card">
     <h2>{{ weather.city }}</h2>
+    <img src="http://openweathermap.org/img/wn/{{ weather.icon }}@2x.png">
     <p>Temperature: {{ weather.temperature }}°C</p>
     <p>Description: {{ weather.description }}</p>
     <p>Humidity: {{ weather.humidity }}%</p>
     <p>Wind Speed: {{ weather.wind }} m/s</p>
 </div>
 
-{% else %}
+{% endif %}
 
+{% if forecast %}
+
+<h3>5-Day Forecast</h3>
+
+<div style="display:flex; gap:15px; justify-content:center; flex-wrap:wrap;">
+
+    {% for day in forecast %}
+    <div class="card">
+        <p><b>{{ day.date }}</b></p>
+        <img src="http://openweathermap.org/img/wn/{{ day.icon }}@2x.png">
+        <p>{{ day.temp }}°C</p>
+        <p>{{ day.description }}</p>
+    </div>
+    {% endfor %}
+
+</div>
+
+{% endif %}
+
+{% if not weather %}
 <p>Enter a city to get its weather information.</p>
-
 {% endif %}
 
 {% endblock %}
